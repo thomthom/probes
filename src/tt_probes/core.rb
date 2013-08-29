@@ -24,6 +24,8 @@ module TT::Plugins::Probes
 
   # Constants
   unless file_loaded?( __FILE__ )
+  PLUGIN = self
+
   POINT_OPEN_SQUARE     = 1
   POINT_FILLED_SQUARE   = 2
   POINT_CROSS           = 3
@@ -354,9 +356,9 @@ module TT::Plugins::Probes
             view.draw_text(xy, "Testing") # (!) This is not drawn for some reason. If this is removed the next line doesn't draw.
             # (!) Output real UV data.
             if @real_UV
-              view.draw_text(xy, "(##{i}) UV: #{TT_Probes.format_float(uv.x/uv.z,3)}, #{TT_Probes.format_float(uv.y/uv.z,3)}")
+              view.draw_text(xy, "(##{i}) UV: #{PLUGIN.format_float(uv.x/uv.z,3)}, #{PLUGIN.format_float(uv.y/uv.z,3)}")
             else
-              view.draw_text(xy, "(##{i}) UVHelper Raw Data: #{TT_Probes.format_float(uv.x,3)}, #{TT_Probes.format_float(uv.y,3)}, #{TT_Probes.format_float(uv.z,3)}")
+              view.draw_text(xy, "(##{i}) UVHelper Raw Data: #{PLUGIN.format_float(uv.x,3)}, #{PLUGIN.format_float(uv.y,3)}, #{PLUGIN.format_float(uv.z,3)}")
             end
           }
         end
