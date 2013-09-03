@@ -344,22 +344,24 @@ module TT::Plugins::Probes
                 uv = uvHelp.get_front_UVQ(v)
               end
             end
-            # Mark the vertices
-            pos = (@shift) ? global_position(v) : v
-            view.draw_points(pos, 6, POINT_FILLED_SQUARE, 'yellow')
             # Get Screen co-ordinates of the point and adjust XY for text position
+            pos = (@shift) ? global_position(v) : v
             xy = view.screen_coords(pos)
             xy.x -= 60
             xy.y += 5
             # Draw the text
             view.drawing_color = 'purple'
-            view.draw_text(xy, "Testing") # (!) This is not drawn for some reason. If this is removed the next line doesn't draw.
             # (!) Output real UV data.
             if @real_UV
               view.draw_text(xy, "(##{i}) UV: #{PLUGIN.format_float(uv.x/uv.z,3)}, #{PLUGIN.format_float(uv.y/uv.z,3)}")
             else
               view.draw_text(xy, "(##{i}) UVHelper Raw Data: #{PLUGIN.format_float(uv.x,3)}, #{PLUGIN.format_float(uv.y,3)}, #{PLUGIN.format_float(uv.z,3)}")
             end
+            # Mark the vertices
+            view.draw_points(pos, 6, POINT_FILLED_SQUARE, 'yellow')
+            # (!) This is not drawn for some reason. If this is removed the next
+            # drawing instruction is not drawn in SU 2013 and older.
+            view.draw_text(xy, " ")
           }
         end
 

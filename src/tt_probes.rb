@@ -19,7 +19,7 @@ module TT
   # Plugin information
   PLUGIN_ID       = 'TT_Probes'.freeze
   PLUGIN_NAME     = 'Probes'.freeze
-  PLUGIN_VERSION  = '1.3.1'.freeze
+  PLUGIN_VERSION  = '1.3.2'.freeze
 
   # Resource paths
   FILENAMESPACE = File.basename( __FILE__, '.rb' )
